@@ -1,0 +1,9 @@
+ARG version=1.24.0
+ARG base=kindest/node
+FROM ${base}:v${version}
+
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install -y iputils-ping libnl-utils net-tools tcpdump lldpd ssh vim
+RUN systemctl enable lldpd
+RUN systemctl enable containerd
